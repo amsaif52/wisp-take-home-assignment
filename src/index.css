@@ -22,15 +22,16 @@ code {
 }
 .loader{
   font-weight: bold;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 .error{
-  font-weight: red;
-  font-size: 14px;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
   line-height: 1;
   text-align: center;
   margin-top: 10px;
@@ -99,7 +100,10 @@ code {
   border-bottom: 1px solid black;
   text-align: center;
 }
-.haveLink:hover{
+.haveLink{
+  background-color: #c8efee;
+}
+.haveLink:hover, .haveLink:active{
   background: #ccc;
   cursor: pointer;
 }

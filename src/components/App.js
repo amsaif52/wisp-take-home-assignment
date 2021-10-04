@@ -51,7 +51,7 @@ function App() {
         isLoading ? (
           <>
             <ResultTable results={results} />
-            <Pagination pagination={pagination} page={page} setPage={setPage} handlePaginationChange={handlePaginationChange} />
+            <Pagination pagination={pagination} page={page} handlePaginationChange={handlePaginationChange} />
           </>
         ) : (
           error ? (

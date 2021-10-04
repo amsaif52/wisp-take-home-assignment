@@ -1,4 +1,4 @@
-function Pagination({ pagination, page, setPage, handlePaginationChange }) {
+function Pagination({ pagination, page, handlePaginationChange }) {
     return (
         <div className="pagination">
             <button className={!pagination.hasPrevPage ? 'notActive' : ''} onClick={() => handlePaginationChange(page - 1)}>❮</button>
