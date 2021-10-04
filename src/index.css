@@ -11,3 +11,95 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title{
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.loader{
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.error{
+  font-weight: red;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.app-table div.header{
+  display: grid;
+  grid-template-columns: minmax(100px, 150px) 1fr 1fr 1fr 3fr;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.app-table{
+  max-width: 1000px;
+  margin: 0 auto;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
+.app-header{
+  display: grid;
+  grid-template-columns: minmax(100px, 150px) 1fr 1fr 1fr 3fr;
+}
+.app-header div{
+  padding: 8px 4px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pagination > div{
+  padding:8px 16px;
+}
+
+.pagination button {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  cursor: pointer;
+}
+.pagination button.notActive {
+  background-color: #ccc;
+  cursor: default;
+  pointer-events: none;
+}
+.app-body a {
+  text-decoration: none;
+  color: inherit;
+  display: grid;
+  grid-template-columns: minmax(100px, 150px) 1fr 1fr 1fr 3fr;
+}
+.app-body div{
+  padding: 8px 4px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+.haveLink:hover{
+  background: #ccc;
+  cursor: pointer;
+}
