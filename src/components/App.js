@@ -44,24 +44,23 @@ function App() {
     }
     fetchResults()
   }, [page])
-  return (
-    <div className="App">
-      <div className="title">{TITLE_TAG}</div>
-      {
-        isLoading ? (
-          <>
-            <ResultTable results={results} />
-            <Pagination pagination={pagination} page={page} handlePaginationChange={handlePaginationChange} />
-          </>
+  return (<main>
+    <h1>{TITLE_TAG}</h1>
+    {
+      isLoading ? (
+        <>
+          <ResultTable results={results} />
+          <Pagination pagination={pagination} page={page} handlePaginationChange={handlePaginationChange} />
+        </>
+      ) : (
+        error ? (
+          <div className="error">{error}</div>
         ) : (
-          error ? (
-            <div className="error">{error}</div>
-          ) : (
-            <div className="loader">{LOADING}</div>
-          )
+          <div className="loader">{LOADING}</div>
         )
-      }
-    </div>
+      )
+    }
+  </main>
   );
 }
 

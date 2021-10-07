@@ -1,25 +1,30 @@
 function ResultTable({ results }) {
+    const onPresskitClick = (link) => {
+        window.open(link, "_blank");
+    }
     return (
-        <div className="app-table">
-            <div className="app-header">
-                <div><strong>Flight Number</strong></div>
-                <div><strong>Launch Year</strong></div>
-                <div><strong>Rocket Name</strong></div>
-                <div><strong>Launch Name</strong></div>
-                <div><strong>Details</strong></div>
+        <>
+            <div role="region" aria-labelledby="Cap1" tabindex="0">
+                <table id="Books">
+                    <tr>
+                        <th>Flight Number</th>
+                        <th>Launch Year</th>
+                        <th>Rocket Name</th>
+                        <th>Launch Name</th>
+                        <th>Details</th>
+                    </tr>
+                    {results?.map(result => (
+                        <tr key={result?.flight_number} onClick={() => onPresskitClick(result?.presskit)} className={result?.presskit ? 'pressKitActive' : ''}>
+                            <td>{result?.flight_number}</td>
+                            <td>{result?.launch_year}</td>
+                            <td>{result?.rocket_name}</td>
+                            <td>{result?.launch_name}</td>
+                            <td>{result?.details}</td>
+                        </tr>
+                    ))}
+                </table>
             </div>
-            <div className="app-body">
-                {results?.map(result =>
-                    <a href={result?.presskit} key={result?.flight_number} className={result?.presskit ? 'haveLink' : ''} target="_blank" rel="noreferrer">
-                        <div>{result?.flight_number}</div>
-                        <div>{result?.launch_year}</div>
-                        <div>{result?.rocket_name}</div>
-                        <div>{result?.launch_name}</div>
-                        <div>{result?.details}</div>
-                    </a>
-                )}
-            </div>
-        </div>
+        </>
     )
 }
 
