@@ -1,66 +1,68 @@
 import React, { useEffect, useState } from "react";
-import { getSpacexLaunches } from '../services/LaunchesServices'
-import { getRocketDetail } from '../services/RocketServices'
-import { TITLE_TAG, LOADING } from '../const'
-import Pagination from './Pagination'
-import ResultTable from './ResultTable'
+import { getSpacexLaunches } from "../services/LaunchesServices";
+import { getRocketDetail } from "../services/RocketServices";
+import { TITLE_TAG, LOADING } from "../const";
+import Pagination from "./Pagination";
+import ResultTable from "./ResultTable";
 function App() {
-  const [pagination, setPagination] = useState({})
-  const [results, setResults] = useState([])
+  const [pagination, setPagination] = useState({});
+  const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState('');
-  const normalizeValues = ({ docs }) => docs.map(async result => {
-    const getRocketName = (await getRocketDetail(result?.rocket))?.name;
-    return {
-      "flight_number": result?.flight_number,
-      "launch_year": new Date(result?.date_utc).getFullYear(),
-      "rocket_name": getRocketName,
-      "launch_name": result?.name,
-      "details": result?.details,
-      "presskit": result?.links?.presskit
-    }
-  })
+  const [error, setError] = useState("");
+  const normalizeValues = ({ docs }) =>
+    docs.map(async (result) => {
+      const getRocketName = (await getRocketDetail(result?.rocket))?.name;
+      return {
+        flight_number: result?.flight_number,
+        launch_year: new Date(result?.date_utc).getFullYear(),
+        rocket_name: getRocketName,
+        launch_name: result?.name,
+        details: result?.details,
+        presskit: result?.links?.presskit,
+      };
+    });
   const normalizePagination = (response) => ({
     hasNextPage: response?.hasNextPage,
-    hasPrevPage: response?.hasPrevPage
-  })
+    hasPrevPage: response?.hasPrevPage,
+  });
   const handlePaginationChange = (page) => {
-    setPage(page)
-    setIsLoading(false)
-  }
+    setPage(page);
+    setIsLoading(false);
+  };
   useEffect(() => {
     async function fetchResults() {
       try {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         const response = await getSpacexLaunches(page);
-        setResults(await Promise.all(normalizeValues(response)))
-        setPagination(normalizePagination(response))
-        setIsLoading(true)
+        setResults(await Promise.all(normalizeValues(response)));
+        setPagination(normalizePagination(response));
+        setIsLoading(true);
       } catch (e) {
-        setError(e.message)
-        setIsLoading(false)
+        setError(e.message);
+        setIsLoading(false);
       }
     }
-    fetchResults()
-  }, [page])
-  return (<main>
-    <h1>{TITLE_TAG}</h1>
-    {
-      isLoading ? (
+    fetchResults();
+  }, [page]);
+  return (
+    <main>
+      <h1>{TITLE_TAG}</h1>
+      {isLoading ? (
         <>
           <ResultTable results={results} />
-          <Pagination pagination={pagination} page={page} handlePaginationChange={handlePaginationChange} />
+          <Pagination
+            pagination={pagination}
+            page={page}
+            handlePaginationChange={handlePaginationChange}
+          />
         </>
+      ) : error ? (
+        <div className="error">{error}</div>
       ) : (
-        error ? (
-          <div className="error">{error}</div>
-        ) : (
-          <div className="loader">{LOADING}</div>
-        )
-      )
-    }
-  </main>
+        <div className="loader">{LOADING}</div>
+      )}
+    </main>
   );
 }
 
